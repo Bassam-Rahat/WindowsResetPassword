@@ -4,16 +4,14 @@
 
 int main()
 {
-    // Use a system path instead of hardcoded user-specific path
-    WCHAR szPath[MAX_PATH];
-    // Default path or you could read from registry
-    wcscpy_s(szPath, MAX_PATH, L"C:\\Program Files\\WebViewLauncher\\WebViewLauncher.exe");
+    // Path to your C# EXE - Make sure the path is correct
+    LPCWSTR appPath = L"C:\\Users\\Sandeep Maheshwari\\source\\repos\\WebViewLauncher\\WebViewLauncher\\bin\\Debug\\net8.0-windows\\WebViewLauncher.exe";
 
     // Launch the C# application using ShellExecute
     HINSTANCE result = ShellExecute(
         NULL,             // Parent window handle
         L"open",          // Operation to perform
-        szPath,           // Path to the application
+        appPath,          // Path to the application
         NULL,             // Arguments (NULL if none)
         NULL,             // Default directory
         SW_SHOWNORMAL     // Window display option
