@@ -2,6 +2,10 @@
 #include "MyCredentialProviderFactory.h"
 #include "MyCredentialProvider.h"
 
+// Use the externally defined GUID and reference counter
+extern GUID CLSID_MyCredentialProvider;
+extern LONG g_cRef;
+
 MyCredentialProviderFactory::MyCredentialProviderFactory() : _cRef(1) {}
 MyCredentialProviderFactory::~MyCredentialProviderFactory() {}
 
@@ -54,11 +58,11 @@ HRESULT MyCredentialProviderFactory::LockServer(BOOL fLock)
 {
     if (fLock)
     {
-        AddRef();
+        InterlockedIncrement(&g_cRef);
     }
     else
     {
-        Release();
+        InterlockedDecrement(&g_cRef);
     }
     return S_OK;
 }

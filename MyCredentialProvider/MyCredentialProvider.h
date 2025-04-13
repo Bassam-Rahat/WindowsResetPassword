@@ -4,6 +4,13 @@
 #include <credentialprovider.h>
 #include <string>
 
+// Add the enum definition for field IDs
+enum SAMPLE_FIELD_ID
+{
+    SFI_RESET_PASSWORD_LINK = 0,
+    SFI_NUM_FIELDS
+};
+
 class MyCredentialProvider : public ICredentialProvider
 {
 public:
@@ -25,6 +32,8 @@ public:
     STDMETHODIMP GetFieldDescriptorAt(DWORD dwIndex, CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR** ppcpfd);
     STDMETHODIMP GetCredentialCount(DWORD* pdwCount, DWORD* pdwDefault, BOOL* pbAutoLogonWithDefault);
     STDMETHODIMP GetCredentialAt(DWORD dwIndex, ICredentialProviderCredential** ppcpc);
+    // Add CommandLinkClicked method to match the implementation
+    STDMETHODIMP CommandLinkClicked(DWORD dwFieldID);
 
 private:
     LONG _cRef;
