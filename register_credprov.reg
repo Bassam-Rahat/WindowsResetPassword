@@ -1,0 +1,21 @@
+Windows Registry Editor Version 5.00
+
+; Register the credential provider in the system
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\{5a5f9000-69be-4acc-bc63-5f05de2dc0e7}]
+@="WebView Password Reset Provider"
+
+; COM class registration
+[HKEY_CLASSES_ROOT\CLSID\{5a5f9000-69be-4acc-bc63-5f05de2dc0e7}]
+@="WebView Password Reset Provider"
+
+[HKEY_CLASSES_ROOT\CLSID\{5a5f9000-69be-4acc-bc63-5f05de2dc0e7}\InprocServer32]
+@="C:\\Windows\\System32\\MyCredentialProvider.dll"
+"ThreadingModel"="Apartment"
+
+; 32-bit compatibility on 64-bit systems
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Classes\CLSID\{5a5f9000-69be-4acc-bc63-5f05de2dc0e7}]
+@="WebView Password Reset Provider"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Classes\CLSID\{5a5f9000-69be-4acc-bc63-5f05de2dc0e7}\InprocServer32]
+@="C:\\Windows\\System32\\MyCredentialProvider.dll"
+"ThreadingModel"="Apartment" 

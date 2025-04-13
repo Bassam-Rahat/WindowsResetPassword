@@ -60,11 +60,11 @@ HRESULT MyCredentialProvider::GetCredentialAt(DWORD dwIndex, ICredentialProvider
     if (dwIndex != 0)
         return E_INVALIDARG;
 
-    // This is where you launch your C# app
-    LPCWSTR appPath = L"C:\\Users\\Sandeep Maheshwari\\source\\repos\\WebViewLauncher\\WebViewLauncher\\bin\\Debug\\net8.0-windows\\WebViewLauncher.exe";
-    ShellExecute(NULL, L"open", appPath, NULL, NULL, SW_SHOWNORMAL);
-
+    // Return a credential placeholder but don't launch the app yet
+    // The app should launch when the user clicks on the reset password option
     *ppcpc = NULL;
+    
+    // We'll launch the app when CommandLinkClicked is called instead
     return S_OK;
 }
 
@@ -94,4 +94,16 @@ ULONG MyCredentialProvider::Release()
         delete this;
     }
     return cRef;
+}
+
+HRESULT MyCredentialProvider::CommandLinkClicked(DWORD dwFieldID)
+{
+    if (dwFieldID == SFI_RESET_PASSWORD_LINK)
+    {
+        // Launch the password reset application
+        // Use the exact path where we installed the application
+        ShellExecute(NULL, L"open", L"C:\\Program Files\\WebViewLauncher\\WebViewLauncher.exe", NULL, NULL, SW_SHOWNORMAL);
+        return S_OK;
+    }
+    return E_INVALIDARG;
 }

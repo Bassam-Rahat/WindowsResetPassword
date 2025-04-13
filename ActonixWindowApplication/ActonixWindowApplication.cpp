@@ -5,7 +5,7 @@
 int main()
 {
     // Path to your C# EXE - Make sure the path is correct
-    LPCWSTR appPath = L"C:\\Users\\Sandeep Maheshwari\\source\\repos\\WebViewLauncher\\WebViewLauncher\\bin\\Debug\\net8.0-windows\\WebViewLauncher.exe";
+    LPCWSTR appPath = L"D:\Projects\WebViewLauncher\WebViewLauncher\WebViewLauncher\bin\Release\net8.0 - windows\WebViewLauncher.exe";
 
     // Launch the C# application using ShellExecute
     HINSTANCE result = ShellExecute(
